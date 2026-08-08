@@ -1,28 +1,46 @@
-const URL_PLANILHA = "https://script.google.com/macros/s/AKfycbwHNd3YVKkgADO67uRAuyo0t6SVyYT_gimTX1jlpeIJIFNNhkXGyNKDCQQ9jzaiGTBR/exec"; // <-- TROCA AQUI
+function mostrarAba(aba) {
+    // Tira 'ativo' de todas as abas e botões
+    document.querySelectorAll('.conteudo-aba').forEach(a => a.classList.remove('ativo'));
+    document.querySelectorAll('.btn-aba').forEach(b => b.classList.remove('ativo'));
+    
+    // Adiciona 'ativo' na aba e botão clicado
+    document.getElementById(aba).classList.add('ativo');
+    event.target.classList.add('ativo');
+}
 
 function enviarDados(event) {
     event.preventDefault();
     
-    const nome = document.getElementById('nome').value;
-    const setor = document.getElementById('setor').value;
-    const material = document.getElementById('material').value;
-    const quantidade = document.getElementById('quantidade').value;
+    const mensagem = document.getElementById('mensagem');
+    mensagem.innerHTML = 'Enviando...';
+    
+    const dados = {
+        data: document.getElementById('data').value,
+        nome: document.getElementById('nome').value,
+        cpf: document.getElementById('cpf').value,
+        produto: document.getElementById('produto').value
+    };
 
-    const dados = { data: new Date().toLocaleDateString('pt-BR'), nome, setor, material, quantidade };
+    // COLE SUA URL DO APPS SCRIPT AQUI
+    const url = 'https://script.google.com/macros/s/AKfycbwHNd3YVKkgADO67uRAuyo0t6SVyYT_gimTX1jlpeIJIFNNhkXGyNKDCQQ9jzaiGTBR/exec';
 
-    const btn = document.querySelector('button[type="submit"]');
-    btn.disabled = true; btn.innerText = "Enviando...";
-
-    fetch(URL_PLANILHA, { method: 'POST', body: JSON.stringify(dados) })
-    .then(res => res.json())
-    .then(() => {
-        alert("✅ Lançado com sucesso!");
-        document.getElementById('form-retirada').reset();
-        document.getElementById('quantidade').value = 1;
-        btn.disabled = false; btn.innerText = "Lançar Retirada";
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(dados)
     })
-    .catch(() => {
-        alert("❌ Erro. Verifique se a URL do Apps Script está certa e se publicou como 'Qualquer pessoa'");
-        btn.disabled = false; btn.innerText = "Lançar Retirada";
+    .then(res => res.json())
+    .then(data => {
+        if(data.resultado === 'sucesso'){
+            mensagem.innerHTML = '✅ Lançado com sucesso!';
+            document.getElementById('form-retirada').reset();
+        } else {
+            mensagem.innerHTML = '❌ Erro: ' + data.erro;
+        }
+    })
+    .catch(erro => {
+        mensagem.innerHTML = '❌ Erro de conexão';
+        console.error(erro);
     });
 }
+
+document.getElementById('form-retirada').addEventListener('submit', enviarDados);
