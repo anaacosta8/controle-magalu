@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
@@ -13,8 +13,8 @@
     </header>
 
     <nav class="abas">
-        <button class="btn-aba ativo" onclick="mostrarAba('lancamento')">Lançar Retirada</button>
-        <button class="btn-aba" onclick="mostrarAba('configuracao')">Configuração</button>
+        <button class="btn-aba ativo" onclick="mostrarAba(event, 'lancamento')">Lançar Retirada</button>
+        <button class="btn-aba" onclick="mostrarAba(event, 'configuracao')">Configuração</button>
     </nav>
 
     <!-- ABA LANÇAMENTO -->
@@ -43,13 +43,17 @@
 
     <!-- ABA CONFIGURAÇÃO -->
     <main id="configuracao" class="conteudo-aba">
-        <h3>Configurações</h3>
+        <h3>Sobre o Sistema</h3>
+        <p>Este sistema foi desenvolvido para automatizar e digitalizar o processo de retirada de materiais, evitando furos no estoque.</p>
+        <p><b>Desenvolvido por:</b> Ana Costa - Facilities - Compras Corporativas</p>
+        <p><b>Conexão:</b> Conectado diretamente à Planilha de Controle Geral via API.</p>
     </main>
 
     <script>
-    function mostrarAba(aba) {
+    function mostrarAba(event, aba) {
         document.querySelectorAll('.conteudo-aba').forEach(a => a.classList.remove('ativo'));
         document.querySelectorAll('.btn-aba').forEach(b => b.classList.remove('ativo'));
+        
         document.getElementById(aba).classList.add('ativo');
         event.target.classList.add('ativo');
     }
