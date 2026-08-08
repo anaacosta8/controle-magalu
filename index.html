@@ -10,86 +10,47 @@
 
     <!-- Cabeçalho com a Logo do Magazine -->
     <header>
-        
         <h2>Controle de Retirada de Produtos</h2>
     </header>
 
     <!-- Menu de Abas -->
     <nav class="abas">
-        <button class="btn-aba ativo" onclick="mudarAba('lancamento', event)">Lançar Retirada</button>
-<button class="btn-aba" onclick="mudarAba('configuracao', event)">Configuração</button>
-        
+        <button class="btn-aba ativo" onclick="mostrarAba('lancamento')">Lançar Retirada</button>
+        <button class="btn-aba" onclick="mostrarAba('configuracao')">Configuração</button>
     </nav>
 
     <!-- CONTEÚDO: ABA LANÇAMENTO -->
-    <main id="aba-lancamento" class="conteudo-aba">
+    <main id="lancamento" class="conteudo-aba ativo">
         <form id="form-retirada">
             <div class="campo">
                 <label for="data">Data:</label>
-                <input type="date" id="data" required>
+                <input type="date" id="data" name="data" required>
             </div>
-
             <div class="campo">
-                <label for="nome">Nome do Colaborador:</label>
-                <input type="text" id="nome" placeholder="Digite o nome" required>
+                <label for="nome">Nome:</label>
+                <input type="text" id="nome" name="nome" required>
             </div>
-
             <div class="campo">
-                <label for="setor">Setor:</label>
-                <input type="text" id="setor" placeholder="Digite o setor" required>
+                <label for="cpf">CPF:</label>
+                <input type="text" id="cpf" name="cpf" required>
             </div>
-
             <div class="campo">
-            <div class="form-group">
-    <label for="material">Material:</label>
-    <select id="material" required>
-        <option value="">-- Selecione o material --</option>
-        <option value="Caneta">Caneta</option>
-        <option value="Clipes">Clipes</option>
-        <option value="Caderno pequeno">Caderno pequeno</option>
-        <option value="Caderno grande">Caderno grande</option>
-        <option value="Pilha AA">Pilha AA</option>
-        <option value="Pilha AAA">Pilha AAA</option>
-        <option value="Fita de embalagens">Fita de embalagens</option>
-        <option value="Fita crepe">Fita crepe</option>
-        <option value="Cola">Cola</option>
-        <option value="Super bonder">Super bonder</option>
-        <option value="Pincel atômico">Pincel atômico</option>
-        <option value="Pincel permanente">Pincel permanente</option>
-        <option value="Pincel Quadro branco">Pincel Quadro branco</option>
-        <option value="Marca texto">Marca texto</option>
-        <option value="Lápis">Lápis</option>
-        <option value="Grampos">Grampos</option>
-        <option value="Etiqueta">Etiqueta</option>
-        <option value="Régua">Régua</option>
-        <option value="Tesoura">Tesoura</option>
-        <option value="Borracha">Borracha</option>
-        <option value="Apontador">Apontador</option>
-        <option value="Pacote de copo">Pacote de copo</option>
-        <option value="Caixa arquivo">Caixa arquivo</option>
-        <option value="Guardanapo">Guardanapo</option>
-    </select>
-</div>
-
-<div class="form-group">
-    <label for="quantidade">Quantidade:</label>
-    <input type="number" id="quantidade" min="1" value="1" required>
-</div>
-
-            <button type="submit" class="btn-enviar">Lançar Retirada</button>
+                <label for="produto">Produto:</label>
+                <input type="text" id="produto" name="produto" required>
+            </div>
+            <button type="submit" id="btnLancar">Lançar Retirada</button>
         </form>
+        <div id="mensagem"></div>
     </main>
 
     <!-- CONTEÚDO: ABA CONFIGURAÇÃO -->
-    <main id="aba-configuracao" class="conteudo-aba escondido">
-        <div class="cartao-info">
-            <h3>Sobre o Sistema</h3>
-            <p><strong>Por que foi feito:</strong> Este sistema foi desenvolvido para automatizar e digitalizar o processo de retirada de materiais, evitando furos no estoque.</p>
-            <p><strong>Quem fez:</strong> Desenvolvido por Ana Costa - Facilities - Compras Corporativas</p>
-            <p><strong>Integração:</strong> Conectado diretamente à Planilha de Controle Geral via API.</p>
-        </div>
+    <main id="configuracao" class="conteudo-aba">
+        <h3>Configurações</h3>
+        <p>Aqui você pode configurar os dados da planilha e outras opções.</p>
+        <!-- Coloque aqui os campos de configuração que você quiser -->
     </main>
 
-       <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
+   
