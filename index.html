@@ -4,7 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Retirada de Materiais - Magalu</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body { font-family: Arial; background: #f4f4f4; padding: 20px; max-width: 500px; margin: auto; }
+        header { text-align: center; margin-bottom: 20px; }
+        .abas { display: flex; gap: 10px; margin-bottom: 20px; }
+        .btn-aba { padding: 10px 20px; border: none; background: #ccc; cursor: pointer; border-radius: 5px; flex: 1; }
+        .btn-aba.ativo { background: #0046a0; color: white; }
+        .conteudo-aba { display: none; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .conteudo-aba.ativo { display: block; }
+        .campo { margin-bottom: 15px; }
+        .campo label { display: block; margin-bottom: 5px; font-weight: bold; }
+        .campo input, .campo select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
+        #btnLancar { width: 100%; padding: 12px; background: #0046a0; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; font-weight: bold; }
+    </style>
 </head>
 <body>
 
@@ -33,8 +45,38 @@
                 <input type="text" id="setor" name="setor" required>
             </div>
             <div class="campo">
+                <label for="material">Material:</label>
+                <select id="material" name="material" required>
+                    <option value="">Selecione o material</option>
+                    <option>Caneta</option>
+                    <option>Clipes</option>
+                    <option>Caderno pequeno</option>
+                    <option>Caderno grande</option>
+                    <option>Pilha AA</option>
+                    <option>Pilha AAA</option>
+                    <option>Fita de embalagens</option>
+                    <option>Fita crepe</option>
+                    <option>Cola</option>
+                    <option>Super bonder</option>
+                    <option>Pincel atômico</option>
+                    <option>Pincel permanente</option>
+                    <option>Pincel Quadro branco</option>
+                    <option>Marca texto</option>
+                    <option>Lápis</option>
+                    <option>Grampos</option>
+                    <option>Etiqueta</option>
+                    <option>Régua</option>
+                    <option>Tesoura</option>
+                    <option>Borracha</option>
+                    <option>Apontador</option>
+                    <option>Pacote de copo</option>
+                    <option>Caixa arquivo</option>
+                    <option>Guardadapo</option>
+                </select>
+            </div>
+            <div class="campo">
                 <label for="quantidade">Quantidade:</label>
-                <input type="number" id="quantidade" name="quantidade" required>
+                <input type="number" id="quantidade" name="quantidade" min="1" required>
             </div>
             <button type="submit" id="btnLancar">Lançar Retirada</button>
         </form>
